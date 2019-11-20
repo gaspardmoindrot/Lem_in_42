@@ -1,0 +1,1 @@
+make re && gcc main.c -L. -lft -g -fsanitize=address && ./a.out

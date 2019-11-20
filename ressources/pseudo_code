@@ -1,0 +1,90 @@
+Listes utilisées :
+
+-----------------------------------------------------------------------------------------
+
+
+struct chemin
+  |  int     salle
+  |  int     nb_connexion
+  |  int     numero_etape
+  |  chemin  **next
+
+struct room
+  |  char    *name
+  |  int     start
+  |  int     end
+  |  int     **neighbour
+  |  int     **coord        # Si on fait un visu
+  |  int     nb_ants
+  |  chemin  **chemin
+
+
+-----------------------------------------------------------------------------------------
+
+
+$> ./lem_in < file.map
+
+
+# Rechercher des erreurs potentielles du fichier "file.map"
+# Stocker les données du fichier "file.map" :
+# 
+# -> Stocker les noms des salles dans "name" pour pouvoir utiliser
+#    leur index pour les identifier dans la suite de l'algo (on va appelé
+#    le numéro de la salle : n)
+#
+# -> Donner l'index de la première salle à "start" et de la dernière à "end"
+#
+# -> Stocker les voisins des salles dans "neighbour" de la sorte :
+#    (c'est un tableau de tableau de int, de la taille "n" (avec n le nombre de salle),
+#    la taille des tableaux de int à l'intérieur du grand tableau dépend du nombre de voisin)
+#    
+#    -> salle 0 : |   Visited   |   Weigth   |  Voisin 1  |  Voisin 2  | ...
+#       salle 1 : |   Visited   |   Weigth   |  Voisin 1  |  Voisin 2  | ...
+#       salle 2 : |   Visited   |   Weigth   |  Voisin 1  |  Voisin 2  | ...
+#         ...
+#
+#    Visited : initialisé à 0. Peut prendre la valeur 1 ou 2 egalement en fonction de
+#              respectivement s'il est en train d'être visité ou s'il a été visité
+#    
+#    Weight : poids d'une salle. Si on veut faire un bonus. De base pour Lem_in le poids est de 1
+# 
+# -> Stocker les coords dans "coord" si on veut faire le bonus
+#
+# -> Stocker le nombre de fourmis dans "ants"
+#
+# -> On initialise "chemin" avec un taille qui correspond au nombre de chemin connecté au start
+#    On initialise chaque chemin[n]->salle avec l'index de 'start' et initialise le 'visited' de 'start' à 1
+
+fonction résoudre :
+{
+	régle : - une fois qu'on visite une salle on met dans son 'visited' la valeur 1
+	        - lorsque l'on passe une salle, on met dans son 'visited' la valeur 2
+	        - on met dans chaque 'numero_etape' = nb_etape
+	        - on initialise next** avec une taille du nombre de 'connexion - 1'
+	        - on avance 1 par 1 en meme temps sur tous les différents chemins
+	        - a chaque étape, on vérifie que n'est pas déjà passé par une salle (si oui, on donne NULL à 'next'
+	        - si nb_connexion = 1, alors c'est une impasse et on donne NULL à 'next'
+	        - on ne revient jamais en arrière
+	        - si on passe sur un chemin où on est déjà passé dans le même index de départ, on donne NULL à 'next'
+	        - si on passe sur un chemin où on est déjà passé mais pas dans le même index de départ :
+	            -> si la fourmi qui y est déjà passée n'avait pas d'autres chemins, on met NULL à 'next'
+	            -> si non, (c'est la que l'algo va etre long a s'executer). J'aimerai bien que dans ce cas là les chemins
+	               continuent mais si tel est le cas, on peut se retrouver très rapidement avec des milliers de chemins à
+	               résoudre en parallèle -> trop long pour l'algo. Donc, soit on trouve une facon de diminuer des opérations
+	               inutiles, soit on fait un algo moins performant mais plus rapide !)
+	
+}
+
+Algorithm de résolution :
+{	
+	int nb_etape = 0
+	on commence avec l'endroit où est 'start'
+	
+	tant que tous les index de 'chemin' ne sont pas soit fini par NULL soit fini par
+	SUCESS (SUCESS correspond à chemin allant jusqu'à 'end', je pense le représenter
+	avec 'nb_connexion' = -1 qui n'est pas possible autrement):
+	{	
+		resoudre()
+		nb_etape++
+	}
+}	
