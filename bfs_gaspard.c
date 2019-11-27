@@ -1,6 +1,6 @@
 #include "lem-in.h"
 
-/*static void		ft_print_father_list(t_node *end, t_params **params)
+static void		ft_print_father_list(t_node *end, t_params **params)
 {
 	t_list	*tmp;
 	t_node	*node;
@@ -27,7 +27,7 @@
 		ft_printf("Path size:%i\n", (*params)->length_path_start_end);
 		ft_printf("{YELLOW}%i{EOC} rooms\n", (*params)->rooms_count);
 	}
-}*/
+}
 
 static void		ft_add_path_history(t_node **son, t_node **father)
 {
@@ -79,7 +79,7 @@ int				ft_bfs_gaspard(t_list **list, t_params **params, t_node *start)
 		queue[i]->passed_flag = 1;
 		if (queue[i]->is_end == 1)
 		{
-			//ft_print_father_list(queue[i], params);
+			ft_print_father_list(queue[i], params);
 			ft_put_arcw(queue[i], list);
 			return (1);
 		}

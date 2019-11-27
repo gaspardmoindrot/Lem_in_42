@@ -115,7 +115,7 @@ void	ft_free_fathers(t_list **list);
 void		ft_algo(t_params **params, t_list **list, t_list ***result);
 int		ft_bfs_gaspard(t_list **list, t_params **params, t_node *start);
 void		ft_put_arcw(t_node *end, t_list **list);
-void		ft_put_bibli(t_params **params, t_list **list, t_list ***result, int i);
-void            ft_malloc_result(t_params **params, t_list **list, t_list ***result);
+void		ft_malloc_result(t_params **params, t_list **list, t_list ***result);
+void		ft_put_bibli(t_list **list, t_list ***result, int i);
 
 #endif

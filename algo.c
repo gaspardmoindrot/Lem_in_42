@@ -83,13 +83,12 @@ void	ft_algo(t_params **params, t_list **list, t_list ***result)
 	(void)result;
 	index = 0;
 	node = ft_find_t_node_with_start(list);
-	//ft_malloc_result(params, list, result)
-	while (ft_bfs_gaspard(list, params, node) > 0 && index < (*params)->ant_count)
+	//ft_malloc_result(params, list, result);
+	while (index < (*params)->ant_count && ft_bfs_gaspard(list, params, node) > 0)
 	{
-		ft_printf("%d\n", index);
 		ft_reset_passed_flags(list);
 		//fonction_test(list);
-		//ft_put_bibli(params, list, result, index);
+		ft_put_bibli(list, result, index);
 		index++;
 	}
 }
