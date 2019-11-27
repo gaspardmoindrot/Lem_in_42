@@ -6,7 +6,7 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 16:32:05 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/17 17:53:52 by rbeaufre         ###   ########.fr       */
+/*   Updated: 2019/11/23 19:06:27 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,19 @@ int             ft_is_room_type(char **str)
     	split = ft_strsplit(*str, ' ');
         i = -1;
         while (split[0][++i])
-            if (!ft_isalnum(split[0][i]))
+            if (!ft_isprint(split[0][i]))
                 return (0);
-        i = -1;
+        i = ft_is_plus_minus(split[1][0]) ? 0 : -1;
         while (split[1][++i])
-            if (!ft_isdigit(split[1][i]))
+            if (!(ft_isdigit(split[1][i])))
                 return (0);
-        i = -1;
+        i = ft_is_plus_minus(split[2][0]) ? 0 : -1;
         while (split[2][++i])
-            if (!ft_isdigit(split[2][i]))
+            if (!(ft_isdigit(split[2][i])))
+			{
+				ft_printf("PROUT");
                 return (0);
+			}
         ft_free_split(2, split);
     }
     return (1);
@@ -79,11 +82,11 @@ int             ft_is_tunnel_type(char **str)
     	split = ft_strsplit(*str, '-');
         i = -1;
         while (split[0][++i])
-            if (!ft_isalnum(split[0][i]))
+            if (!ft_isprint(split[0][i]))
                 return (0);
         i = -1;
         while (split[1][++i])
-            if (!ft_isalnum(split[1][i]))
+            if (!ft_isprint(split[1][i]))
                 return (0);
         ft_free_split(1, split);
     }

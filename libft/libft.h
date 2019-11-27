@@ -6,7 +6,7 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/03 14:01:33 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/16 18:05:28 by rbeaufre         ###   ########.fr       */
+/*   Updated: 2019/11/25 19:47:45 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ struct			s_list
 {
 	void	*content;
 	size_t	content_size;
+	int		arcw;
 	t_list	*next;
 };
 
@@ -93,6 +94,7 @@ int				ft_strncmp(const char *s1, const char *s2, size_t n);
 int				ft_atoi(const char *str);
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
+int				ft_is_plus_minus(int c);
 int				ft_isalnum(int c);
 int				ft_isascii(int c);
 int				ft_isprint(int c);

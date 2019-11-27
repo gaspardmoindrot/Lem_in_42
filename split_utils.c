@@ -6,7 +6,7 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 14:24:36 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/15 19:32:11 by rbeaufre         ###   ########.fr       */
+/*   Updated: 2019/11/25 21:32:12 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		ft_strsplit_get_nb_words(char const *s, char c)
 	return (nbr);
 }
 
-void		    ft_free_split(int nbr, char **res)
+void	ft_free_split(int nbr, char **res)
 {
 	while (nbr >= 0)
 	{

@@ -6,7 +6,7 @@
 #    By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/03 14:03:16 by rbeaufre          #+#    #+#              #
-#    Updated: 2019/11/19 17:45:19 by rbeaufre         ###   ########.fr        #
+#    Updated: 2019/11/26 10:47:54 by rbeaufre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,33 @@ OBJ_DIR = obj
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRC_RAW =  get_next_line.c lem-in.c print_adjacent_list.c \
-			initialize_adjacent_list.c free_adjacent_list.c \
-			parser_checks_1.c split_utils.c fill_adjacent_list.c \
-			list_sort.c initialize_params.c free_params.c \
-			print_general_details.c fill_adjacent_list_2.c \
-			list_utils.c parse_fatal_errors_check.c \
-			check_start_connected_to_end.c \
-			ft_lstnew_revisited.c list_utils_2.c \
+SRC_RAW =  get_next_line.c \
+			lem-in.c \
+			print_adjacent_list.c \
+			initialize_adjacent_list.c \
+			free_adjacent_list.c \
+			split_utils.c \
+			list_sort.c \
+			initialize_params.c \
+			free_params.c \
+			print_general_details.c \
+			fill_adjacent_list_2.c \
+			list_utils.c \
+			parse_fatal_errors_check.c \
+			check_start_connected_to_end_bfs.c \
+			hash_utils.c \
+			ft_lstnew_revisited.c \
+			list_utils_reset.c \
+			check_ants.c \
+			parser_check_modifier_rooms.c \
+			parser_check_comments_tunnels.c \
+			check_start_connected_to_end_dfs.c \
+			fill_adjacent_list_add_room.c \
+			fill_adjacent_list_add_tunnel.c \
+			fill_adjacent_list_handle_modifier.c \
+			algo.c \
+			bfs_gaspard.c \
+			ft_put_bibli.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_RAW))
 
@@ -35,7 +54,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(subst .c,.o,$(SRC_RAW)))
 HEADERS = lem-in.h
 
 CCC = gcc
-CFLAGS = -g -Wall -Wextra -Werror -I$(LIBFT_DIR)
+CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror -I$(LIBFT_DIR)
 
 GREEN := "\033[0;32m"
 CYAN := "\033[0;36m"

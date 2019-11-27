@@ -6,7 +6,7 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 11:42:23 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/18 17:04:32 by rbeaufre         ###   ########.fr       */
+/*   Updated: 2019/11/24 17:42:15 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_list		*ft_lstnew_revisited(void *content, size_t content_size)
 	}
 	list->content = content;
 	list->content_size = content_size;
+	list->arcw = 0;
 	list->next = NULL;
 	return (list);
 }

@@ -6,7 +6,7 @@
 #    By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/09 17:09:36 by rbeaufre          #+#    #+#              #
-#    Updated: 2019/10/29 15:00:31 by rbeaufre         ###   ########.fr        #
+#    Updated: 2019/11/23 18:23:26 by rbeaufre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC_RAW = ft_strlen.c ft_memcpy.c ft_memccpy.c ft_strcpy.c ft_strncpy.c \
 		ft_padding_u.c ft_float.c ft_padding_float.c \
 		ft_padding_float2.c ft_float_2.c ft_puttab.c ft_putbits.c \
 		ft_xx_2.c ft_parse_colour.c ft_printf_err.c \
+		ft_is_plus_minus.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_RAW))
 
