@@ -49,10 +49,10 @@ void		ft_put_bibli(t_list **list, t_list ***result, int i)
 	while (tmp && i >= j && node)
 	{
 		node = (t_node *) tmp->content;
-		ft_printf("%s", ft_find_t_node_with_start(list)->name); //printf
-		ft_printf(" -> %s ", node->name); //printf
 		if (tmp->arcw == 1)
 		{
+			//ft_printf("%s", ft_find_t_node_with_start(list)->name); //printf
+			//ft_printf(" -> %s ", node->name); //printf
 			//result[i][j] = put_start_in_bibli;
 			//result[i][j] = put_tmp_in_bibli_next;
 			tmp_2 = node->next;
@@ -70,8 +70,8 @@ void		ft_put_bibli(t_list **list, t_list ***result, int i)
 					tmp_2 = tmp_2->next;
 			}
 			j++;
+			//ft_putchar('\n'); //printf
 		}
-		ft_putchar('\n'); //printf
 		tmp = tmp->next;
 	}
 }
