@@ -167,6 +167,29 @@ t_list		**ft_malloc_result(t_params **params, t_list **list)
 	return (result);
 }
 
+void    print_bibli(t_list **result, int i)
+{
+        t_node  *node;
+        t_list  *tmp;
+        int     j;
+
+        j = -1;
+        ft_printf("\n");
+        while (++j <= i)
+        {
+                node = (t_node *) result[j]->content;
+                ft_printf("%s ", node->name);
+                tmp = result[j]->next;
+                while (tmp)
+                {
+                        node = (t_node *) tmp->content;
+                        ft_printf("-> %s ", node->name);
+                        tmp = tmp->next;
+                }
+                ft_printf("\n");
+        }
+}
+
 void	ft_algo(t_params **params, t_list **list)
 {
 	t_node	*node;
@@ -180,10 +203,14 @@ void	ft_algo(t_params **params, t_list **list)
 	{
 		if (!(result[index] = (t_list *)malloc(sizeof(t_list) * (index + 1))))
 			return ;
-		ft_test_flag(list);
+		//ft_test_flag(list);
 		ft_reset_passed_flags_gasp(list);
 		//ft_test_g(list);
 		ft_put_bibli(list, &result[index], index);
 		index++;
 	}
+
+	int	l = -1;                      // test
+	while (++l < index)                  // test
+        	print_bibli(&result[l], l);  // test
 }
