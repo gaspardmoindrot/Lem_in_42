@@ -58,7 +58,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(subst .c,.o,$(SRC_RAW)))
 HEADERS = lem_in.h
 
 CCC = gcc
-CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror -I$(LIBFT_DIR)
+CFLAGS = -Wall -Wextra -Werror -I$(LIBFT_DIR)
 
 GREEN := "\033[0;32m"
 CYAN := "\033[0;36m"

@@ -81,9 +81,6 @@ t_list		**ft_malloc_result(t_params **params, t_list **list)
 		size = (*params)->ant_count;
 	if (!(result = (t_list **)malloc(sizeof(t_list *) * (size + 1))))
 		return(NULL);
-	while (++i < size)
-		if (!(result[i] = (t_list *)malloc(sizeof(t_list) * (i + 1))))
-			return(NULL);
 	return (result);
 }
 
@@ -101,7 +98,7 @@ static void	ft_reset_passed_flags_gasp(t_list **list)
 	}
 }
 
-void    print_bibli(t_list **result, int i) // fonction de test /!\
+void    print_bibli(t_list **result, int i)
 {
         t_node  *node;
         t_list  *tmp;
@@ -117,7 +114,7 @@ void    print_bibli(t_list **result, int i) // fonction de test /!\
                 while (tmp->next)
                 {
                         node = (t_node *) tmp->content;
-                        ft_printf("<- %s ", node->name);
+                        ft_printf("-> %s ", node->name);
                         tmp = tmp->next;
                 }
                 ft_printf("\n");
@@ -136,6 +133,8 @@ void		ft_algo(t_params **params, t_list **list)
 	while (index < (*params)->ant_count && ft_bfs_gaspard(list, params, node) > 0)
 	{
 		ft_reset_passed_flags_gasp(list);
+		if (!(result[index] = (t_list *)malloc(sizeof(t_list) * (index + 1))))
+                        return ;
 		ft_put_bibli(list, &result[index], index);
 		index++;
 	}
