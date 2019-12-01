@@ -6,11 +6,11 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 15:04:10 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/25 21:31:54 by rbeaufre         ###   ########.fr       */
+/*   Updated: 2019/11/28 20:34:32 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 static int		ft_handle_error(t_params **params)
 {
@@ -34,7 +34,7 @@ static void		ft_handle_joins(t_params **params, t_node *node)
 	(*params)->length_path_start_end++;
 }
 
-static void		ft_handle_end(t_params **params, t_node *fixed_start)
+static void		ft_handle_end_dfs(t_params **params, t_node *fixed_start)
 {
 	char *str;
 
@@ -42,16 +42,16 @@ static void		ft_handle_end(t_params **params, t_node *fixed_start)
 	{
 		ft_printf("-----------------------\n{GREEN}[Success]{EOC}");
 		ft_printf("A path detected with {YELLOW}D{EOC}FS (recursive) from");
-		ft_printf("start to end\n");
+		ft_printf(" start to end\n");
 	}
 	str = (*params)->path_start_end;
 	(*params)->path_start_end = ft_strjoin(str, fixed_start->name);
 	ft_strdel(&str);
 	if (PRINT == 1)
 	{
-		ft_printf("{GREEN}%s{EOC}\n", (*params)->path_start_end);
-		ft_printf("Path size:%i\n", (*params)->length_path_start_end);
-		ft_printf("{YELLOW}%i{EOC} rooms\n", (*params)->rooms_count);
+		ft_printf("{GREEN} %s{EOC}\n", (*params)->path_start_end);
+		ft_printf(" {YELLOW}%i{EOC}", (*params)->length_path_start_end);
+		ft_printf("-long path\n");
 	}
 	ft_strdel(&((*params)->path_start_end));
 	(*params)->length_path_start_end = 0;
@@ -62,7 +62,7 @@ static	void	ft_handle_joins_and_end(t_params **params, t_node *node,
 {
 	ft_handle_joins(params, node);
 	if (node == fixed_start->next->content)
-		ft_handle_end(params, fixed_start);
+		ft_handle_end_dfs(params, fixed_start);
 }
 
 int				ft_check_start_connected_to_end_dfs(t_params **params,

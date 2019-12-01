@@ -6,20 +6,21 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 10:45:19 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/26 11:07:49 by rbeaufre         ###   ########.fr       */
+/*   Updated: 2019/11/28 20:45:40 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 static int	ft_handle_non_two_error(t_params **params)
 {
 	ft_strdel(&((*params)->non_fatal_error_type));
-	(*params)->non_fatal_error_type = ft_strdup("1-2 of rooms mentionned in tunnel not found, or linked with itself");
+	(*params)->non_fatal_error_type = ft_strdup("Tunnel room not found");
 	return (1);
 }
 
-static void	ft_handle_add_adj(long hash, t_node *node, int *count, t_list **list)
+static void	ft_handle_add_adj(long hash, t_node *node, int *count,
+		t_list **list)
 {
 	t_node *node3;
 	t_list *adj;
@@ -33,12 +34,22 @@ static void	ft_handle_add_adj(long hash, t_node *node, int *count, t_list **list
 	}
 }
 
+static void	ft_handle_loop(t_list *tmp, long *hash, int *count, t_list **list)
+{
+	t_node *node;
+
+	node = (t_node *)tmp->content;
+	if (node->name_hash == hash[0])
+		ft_handle_add_adj(hash[1], node, count, list);
+	else if (node->name_hash == hash[1])
+		ft_handle_add_adj(hash[0], node, count, list);
+}
+
 int			ft_add_tunnel(t_list **list, char **str, t_params **params)
 {
 	char		**split;
 	t_list		*tmp;
 	long		hash[2];
-	t_node		*node;
 	int			count;
 
 	count = 2;
@@ -46,21 +57,19 @@ int			ft_add_tunnel(t_list **list, char **str, t_params **params)
 	tmp = *list;
 	hash[0] = ft_hash(split[0]);
 	hash[1] = ft_hash(split[1]);
-	if (!ft_is_neighbor_with_name_hash(ft_find_t_node_with_name_hash(list, hash[0]), hash[1]))
+	if (!ft_is_neighbor_with_name_hash(
+				ft_find_t_node_with_name_hash(list, hash[0]), hash[1]))
 	{
 		count = 0;
 		while (tmp && tmp->content && ((t_node *)tmp->content)->name)
 		{
-			node = (t_node *)tmp->content;
-			if (node->name_hash == hash[0])
-				ft_handle_add_adj(hash[1], node, &count, list);
-			else if (node->name_hash == hash[1])
-				ft_handle_add_adj(hash[0], node, &count, list);
+			ft_handle_loop(tmp, hash, &count, list);
 			tmp = tmp->next;
 		}
 	}
 	ft_free_split(1, split);
 	if (count != 2 && ft_handle_non_two_error(params) == 1)
 		return (-1);
+	ft_tunnel_add_success(params, str);
 	return (1);
 }

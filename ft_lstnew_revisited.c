@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 t_list		*ft_lstnew_revisited(void *content, size_t content_size)
 {

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem-in.h                                           :+:      :+:    :+:   */
+/*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 07:39:34 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/25 21:06:09 by rbeaufre         ###   ########.fr       */
+/*   Updated: 2019/11/28 20:55:16 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEMIN_H
-# define LEMIN_H
+#ifndef LEM_IN_H
+# define LEM_IN_H
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -44,6 +44,7 @@ struct	s_params
 	char	*non_fatal_error_type;
 	char	*path_start_end;
 	int		length_path_start_end;
+	char	*map;
 };
 
 typedef struct s_node		t_node;
@@ -75,7 +76,7 @@ int		get_next_line(const int fd, char **line);
 int		ft_add_tunnel(t_list **list, char **str, t_params **params);
 int		ft_add_room(t_params **params, t_list **list, char **str);
 void	ft_print_adjacent_list(t_list **nodes);
-void	ft_browse_entry(t_list **nodes, t_params **params);
+int		ft_browse_entry(t_list **nodes, t_params **params);
 int		ft_is_comment(char **str);
 int		ft_is_modifier(char *str);
 void	ft_free_split(int nbr, char **res);
@@ -93,7 +94,8 @@ void	ft_list_sort_adj(t_list **list);
 int		ft_initialize_params(t_params **params);
 void	ft_print_general_details(t_list **list, t_params **params);
 int		ft_check_room_exists(t_list **list, long hash, t_params **params);
-int		ft_check_tunnel_rooms_exist(t_list **list, long hash0, long hash1, t_params **params);
+int		ft_check_tunnel_rooms_exist(t_list **list, long hash0, long hash1,
+		t_params **params);
 int		ft_check_coords_exist(t_list **list, int x, int y, t_params **params);
 int		ft_check_char_occurences(char *str, char c);
 void	ft_print_node(t_node *node);
@@ -104,7 +106,8 @@ t_node	*ft_find_t_node_with_end(t_list **list);
 void	ft_print_parsing_error_non_fatal(t_params **params);
 void	ft_print_parsing_error_fatal(t_params **params);
 int		ft_parse_fatal_errors_check(t_params **params, t_list **list);
-int		ft_check_start_connected_to_end_dfs(t_params **params, t_node *start, t_node *fixed_start);
+int		ft_check_start_connected_to_end_dfs(t_params **params, t_node *start,
+		t_node *fixed_start);
 int		ft_check_start_connected_to_end_bfs(t_params **params, t_node *start);
 t_list	*ft_lstnew_revisited(void *content, size_t content_size);
 int		ft_is_neighbor_with_name_hash(t_node *node, long hash);
@@ -112,10 +115,18 @@ void	ft_reset_passed_flags(t_list **list);
 long	ft_hash(char *str);
 int		ft_check_ants(t_params **params);
 void	ft_free_fathers(t_list **list);
-void	ft_set_has_start_or_end(t_params **params, char * str);
+void	ft_set_has_start_or_end(t_params **params, char *str);
 int		ft_lin(t_params **params, int i, char **str);
-int		ft_lsharp(t_params **params, char **str);
+int		ft_lsharp(t_params **params, char **str, int i);
 void	ft_tunnel_add_success(t_params **params, char **str);
+void	ft_init_queue(t_node **queue, int size);
+int		ft_handle_other_error_cases(char **str, t_params **params, int *i);
+int		ft_handle_double_start(t_params **params, int i);
+int		ft_handle_double_end(t_params **params, int i);
+int		ft_handle_end(t_node **queue, t_params **params, int i);
+void	ft_print_father_list(t_node *end, t_params **params);
+void	ft_add_return_line(t_params **params);
+void	ft_print_map(t_params **params);
 
 void	ft_algo(t_params **params, t_list **list);
 t_list	**ft_malloc_result(t_params **params, t_list **list);

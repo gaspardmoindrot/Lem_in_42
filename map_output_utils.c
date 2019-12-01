@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_utils_2.c                                     :+:      :+:    :+:   */
+/*   map_output_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/19 17:43:58 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/27 18:35:01 by rbeaufre         ###   ########.fr       */
+/*   Created: 2019/11/28 19:00:25 by rbeaufre          #+#    #+#             */
+/*   Updated: 2019/11/28 19:32:30 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	ft_reset_passed_flags(t_list **list)
+void	ft_add_return_line(t_params **params)
 {
-	t_list *tmp;
-	t_node *node;
+	char *str;
 
-	tmp = *list;
-	while (tmp && tmp->next)
-	{
-		node = (t_node *)tmp->content;
-		node->passed_flag = 0;
-		tmp = tmp->next;
-	}
+	str = (*params)->map;
+	(*params)->map = ft_strjoin(str, "\n");
+	ft_strdel(&str);
+}
+
+void	ft_print_map(t_params **params)
+{
+	ft_printf("%s\n", (*params)->map);
 }

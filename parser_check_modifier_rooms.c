@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_check_modifier_rooms.c              :+:      :+:    :+:   */
+/*   parser_check_modifier_rooms.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/23 19:41:37 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/25 21:47:43 by rbeaufre         ###   ########.fr       */
+/*   Created: 2019/11/27 18:31:14 by rbeaufre          #+#    #+#             */
+/*   Updated: 2019/11/28 16:34:21 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
-int             ft_is_modifier(char *str)
+int			ft_is_modifier(char *str)
 {
 	if (str[0] && str[0] == '#' && str[1] && str[1] == '#')
 	{
@@ -26,10 +26,10 @@ int             ft_is_modifier(char *str)
 	return (0);
 }
 
-int             ft_is_room_type(char **str)
+int			ft_is_room_type(char **str)
 {
-	char    **split;
-	int     i;
+	char	**split;
+	int		i;
 
 	if (ft_strsplit_get_nb_words(*str, ' ') != 3 ||
 			ft_check_char_occurences(*str, ' ') != 2)

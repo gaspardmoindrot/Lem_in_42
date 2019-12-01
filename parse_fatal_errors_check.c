@@ -6,47 +6,48 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 17:00:43 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/25 19:48:12 by rbeaufre         ###   ########.fr       */
+/*   Updated: 2019/11/28 20:40:30 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
+
+static void	ft_handle_error(t_params **params)
+{
+	(*params)->error_line = 1;
+	ft_strdel(&((*params)->error_type));
+	(*params)->fatal_error = 1;
+}
 
 static int	ft_ants_rooms_tunnels_start_end(t_params **params)
 {
 	if (((*params)->ant_count < 0))
 	{
-		(*params)->error_line = 1;
-		ft_strdel(&((*params)->error_type));
+		ft_handle_error(params);
 		(*params)->error_type = ft_strdup("Bad ant numbers given");
-		(*params)->fatal_error = 1;
 		return (-1);
 	}
 	if (((*params)->rooms_started) == 0)
 	{
-		(*params)->error_line = 2;
-		ft_strdel(&((*params)->error_type));
+		ft_handle_error(params);
 		(*params)->error_type = ft_strdup("Need rooms");
-		(*params)->fatal_error = 1;
-		return (-1);
-	}
-	if ((*params)->tunnels_started == 0)
-	{
-		(*params)->error_line = 0;
-		ft_strdel(&((*params)->error_type));
-		(*params)->error_type = ft_strdup("Need tunnels");
-		(*params)->fatal_error = 1;
 		return (-1);
 	}
 	if (((*params)->has_start == 0 || ((*params)->has_end == 0)))
 	{
-		(*params)->error_line = 0;
-		ft_strdel(&((*params)->error_type));
+		ft_handle_error(params);
 		(*params)->error_type = ft_strdup("Need both start and end");
-		(*params)->fatal_error = 1;
 		return (-1);
 	}
 	return (1);
+}
+
+static void	ft_handle_error_two(t_params **params)
+{
+	(*params)->error_line = 0;
+	ft_strdel(&((*params)->error_type));
+	(*params)->error_type = ft_strdup("Start and end must be unique");
+	(*params)->fatal_error = 1;
 }
 
 static int	ft_single_start_end(t_list **list, t_params **params)
@@ -61,7 +62,7 @@ static int	ft_single_start_end(t_list **list, t_params **params)
 	tmp = *list;
 	while (tmp && tmp->next)
 	{
-		node = (t_node *) tmp->content;
+		node = (t_node *)tmp->content;
 		if (node->is_start == 1)
 			count_start++;
 		if (node->is_end == 1)
@@ -70,10 +71,7 @@ static int	ft_single_start_end(t_list **list, t_params **params)
 	}
 	if (count_start != 1 || count_end != 1)
 	{
-		(*params)->error_line = 0;
-		ft_strdel(&((*params)->error_type));
-		(*params)->error_type = ft_strdup("Start and end must be unique");
-		(*params)->fatal_error = 1;
+		ft_handle_error_two(params);
 		return (-1);
 	}
 	return (1);

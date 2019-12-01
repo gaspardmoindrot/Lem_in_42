@@ -6,11 +6,11 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 18:18:17 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/24 21:24:07 by rbeaufre         ###   ########.fr       */
+/*   Updated: 2019/11/27 19:26:21 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lem-in.h"
+#include "lem_in.h"
 
 static void		ft_free_node_adj_list(t_list **list)
 {
@@ -18,7 +18,7 @@ static void		ft_free_node_adj_list(t_list **list)
 	t_list		*nxt;
 
 	if (!(*list))
-		return;
+		return ;
 	tmp = *list;
 	while (tmp)
 	{
@@ -29,7 +29,7 @@ static void		ft_free_node_adj_list(t_list **list)
 	list = NULL;
 }
 
-static void		ft_free_node_next(t_node	*node)
+static void		ft_free_node_next(t_node *node)
 {
 	t_list	*list;
 
@@ -48,11 +48,11 @@ void			ft_free_adjacent_list(t_list **list)
 	t_node		*node;
 
 	if (!(*list))
-		return;
+		return ;
 	tmp = *list;
 	while (tmp)
 	{
-		node = (t_node *) tmp->content;
+		node = (t_node *)tmp->content;
 		ft_free_node_next(node);
 		nxt = tmp->next;
 		free(tmp);
@@ -60,7 +60,7 @@ void			ft_free_adjacent_list(t_list **list)
 	}
 }
 
-static void		ft_free_node_fathers(t_node	*node)
+static void		ft_free_node_fathers(t_node *node)
 {
 	t_list	*list;
 
@@ -76,11 +76,11 @@ void			ft_free_fathers(t_list **list)
 	t_node		*node;
 
 	if (!(*list))
-		return;
+		return ;
 	tmp = *list;
 	while (tmp)
 	{
-		node = (t_node *) tmp->content;
+		node = (t_node *)tmp->content;
 		ft_free_node_fathers(node);
 		tmp = tmp->next;
 	}

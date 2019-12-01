@@ -1,6 +1,6 @@
-33
+001337
 #autre commentaire
-##start
+##end
 1 23 3
 2 16 7
 #commentaire
@@ -10,18 +10,19 @@
 6 1 5
 7 4 8
 98 98 98
-##end
+##start
 0 9 5
 100 99 98
 99 -99 -99
 OL 0 0
 OL2 -0 -1
-R 9 0
+*R 9 0
 T 9 1
 U 9 2
 I 9 33
 P 9 4
 0-100
+#0-100
 98-100
 4-98
 #0-4
@@ -40,4 +41,3 @@ P 9 4
 6-5
 4-2
 #autre commentaire
-#Tester les message derreur de la salle LOL 

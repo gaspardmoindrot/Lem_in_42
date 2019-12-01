@@ -1,6 +1,6 @@
-#include "lem-in.h"
+#include "lem_in.h"
 
-void	ft_put_arcw(t_node *end, t_list **list)
+void		ft_put_arcw(t_node *end, t_list **list)
 {
 	t_list	*tmp;
 	t_node	*node;
@@ -51,44 +51,96 @@ void	ft_put_arcw(t_node *end, t_list **list)
 	}
 }
 
-void	fonction_test(t_list **list)
+static int	ft_connect_start(t_list **list)
+{
+	t_node	*start;
+	t_list	*tmp;
+	int	count;
+
+	start = ft_find_t_node_with_start(list);
+	tmp = start->next;
+	count = 0;
+	while (tmp)
+	{
+		count++;
+		tmp = tmp->next;
+	}
+	return (count);
+}
+
+t_list		**ft_malloc_result(t_params **params, t_list **list)
+{
+	int     size;
+	int     i;
+	t_list	**result;
+
+	i = -1;
+	if ((*params)->ant_count >= ft_connect_start(list))
+		size = ft_connect_start(list);
+	else
+		size = (*params)->ant_count;
+	if (!(result = (t_list **)malloc(sizeof(t_list *) * (size + 1))))
+		return(NULL);
+	while (++i < size)
+		if (!(result[i] = (t_list *)malloc(sizeof(t_list) * (i + 1))))
+			return(NULL);
+	return (result);
+}
+
+static void	ft_reset_passed_flags_gasp(t_list **list)
 {
 	t_list *tmp;
-	t_list *tmp_2;
 	t_node *node;
 
 	tmp = *list;
-	ft_putchar('\n');
-	while (tmp && tmp->content && ((t_node *) tmp->content)->name)
+	while (tmp && tmp->next)
 	{
-		node = (t_node *) tmp->content;
-		tmp_2 = node->next;
-		ft_printf("%s ||", node->name);
-		while (tmp_2)
-		{
-			node = (t_node *) tmp_2->content;
-			ft_printf("-> %s:%d ", node->name, tmp_2->arcw);
-			tmp_2 = tmp_2 -> next;
-		}
-		ft_printf("\n");
+		node = (t_node *)tmp->content;
+		node->passed_flag = 0;
 		tmp = tmp->next;
 	}
 }
 
-void	ft_algo(t_params **params, t_list **list, t_list ***result)
+void    print_bibli(t_list **result, int i) // fonction de test /!\
+{
+        t_node  *node;
+        t_list  *tmp;
+        int     j;
+
+        j = -1;
+        ft_printf("\n");
+        while (++j <= i)
+        {
+                node = (t_node *) result[j]->content;
+                ft_printf("%s ", node->name);
+                tmp = result[j]->next;
+                while (tmp->next)
+                {
+                        node = (t_node *) tmp->content;
+                        ft_printf("<- %s ", node->name);
+                        tmp = tmp->next;
+                }
+                ft_printf("\n");
+        }
+}
+
+void		ft_algo(t_params **params, t_list **list)
 {
 	t_node	*node;
 	int	index;
+	t_list	**result;
 
-	(void)result;
 	index = 0;
 	node = ft_find_t_node_with_start(list);
-	//ft_malloc_result(params, list, result);
+	result = ft_malloc_result(params, list);
 	while (index < (*params)->ant_count && ft_bfs_gaspard(list, params, node) > 0)
 	{
-		ft_reset_passed_flags(list);
-		//fonction_test(list);
-		ft_put_bibli(list, result, index);
+		ft_reset_passed_flags_gasp(list);
+		ft_put_bibli(list, &result[index], index);
 		index++;
 	}
+
+	int	l = -1;                      // test
+	while (++l < index)                  // test
+        	print_bibli(&result[l], l);  // test
 }

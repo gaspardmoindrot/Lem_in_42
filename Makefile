@@ -6,7 +6,7 @@
 #    By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/03 14:03:16 by rbeaufre          #+#    #+#              #
-#    Updated: 2019/11/26 10:47:54 by rbeaufre         ###   ########.fr        #
+#    Updated: 2019/11/28 19:00:47 by rbeaufre         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 SRC_RAW =  get_next_line.c \
-			lem-in.c \
+			lem_in.c \
+			lem_in_2.c \
+			lem_in_3.c \
 			print_adjacent_list.c \
 			initialize_adjacent_list.c \
 			free_adjacent_list.c \
@@ -33,16 +35,18 @@ SRC_RAW =  get_next_line.c \
 			list_utils.c \
 			parse_fatal_errors_check.c \
 			check_start_connected_to_end_bfs.c \
+			check_start_connected_to_end_bfs_2.c \
+			check_start_connected_to_end_dfs.c \
 			hash_utils.c \
 			ft_lstnew_revisited.c \
 			list_utils_reset.c \
 			check_ants.c \
 			parser_check_modifier_rooms.c \
 			parser_check_comments_tunnels.c \
-			check_start_connected_to_end_dfs.c \
 			fill_adjacent_list_add_room.c \
 			fill_adjacent_list_add_tunnel.c \
 			fill_adjacent_list_handle_modifier.c \
+			map_output_utils.c \
 			algo.c \
 			bfs_gaspard.c \
 			ft_put_bibli.c
@@ -51,7 +55,7 @@ SRC = $(addprefix $(SRC_DIR)/, $(SRC_RAW))
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(subst .c,.o,$(SRC_RAW)))
 
-HEADERS = lem-in.h
+HEADERS = lem_in.h
 
 CCC = gcc
 CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror -I$(LIBFT_DIR)
