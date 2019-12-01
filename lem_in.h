@@ -59,6 +59,7 @@ struct	s_node
 	int		x_coord;
 	int		y_coord;
 	int		passed_flag;
+	int		chance_one;
 	t_list	*next;
 	t_list	*father;
 };
@@ -128,10 +129,13 @@ void	ft_print_father_list(t_node *end, t_params **params);
 void	ft_add_return_line(t_params **params);
 void	ft_print_map(t_params **params);
 
-void	ft_algo(t_params **params, t_list **list);
-t_list	**ft_malloc_result(t_params **params, t_list **list);
-int	ft_bfs_gaspard(t_list **list, t_params **params, t_node *start);
-void	ft_put_bibli(t_list **list, t_list **result, int i);
-void	ft_put_arcw(t_node *end, t_list **list);
+void		ft_algo(t_params **params, t_list **list);
+void		ft_reset_passed_flags_gasp(t_list **list);
+int		ft_bfs_gaspard(t_list **list, t_params **params, t_node *start);
+void		ft_put_arcw(t_node *end, t_list **list);
+void		ft_put_bibli(t_list **list, t_list **result, int i);
+t_list		**ft_malloc_result(t_params **params, t_list **list);
+int		ft_connect_start(t_list **list);
+void		ft_test_voisin(t_node *node);
 
 #endif

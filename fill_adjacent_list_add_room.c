@@ -19,6 +19,7 @@ static void	ft_reset_next_is_start_end(t_params **params, t_node *node)
 	if ((*params)->next_is_end == 1)
 		(*params)->next_is_end = 0;
 	node->passed_flag = 0;
+	node->chance_one = 0;
 	node->next = NULL;
 	node->father = NULL;
 }
