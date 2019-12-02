@@ -6,7 +6,7 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 16:32:05 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/28 21:09:51 by rbeaufre         ###   ########.fr       */
+/*   Updated: 2019/12/02 14:41:28 by gmoindro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int				ft_browse_entry(t_list **list, t_params **params)
 
 	str = NULL;
 	if (ft_check_ants(params) == -2)
-		return (-2) ;
+		return (-2);
 	i = 1;
 	while (get_next_line(0, &str) && i++ > 0)
 	{
@@ -102,8 +102,8 @@ int				main(void)
 	if (PRINT == 1)
 		ft_print_general_details(&list, &params);
 	ft_print_map(&params);
+	params->index = 3;
 	ft_algo(&params, &list);
-	// ft_print_ant_moves
 	ft_free_adjacent_list(&list);
 	ft_free_params(&params);
 	return (0);

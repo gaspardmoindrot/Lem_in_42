@@ -6,7 +6,7 @@
 #    By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/03 14:03:16 by rbeaufre          #+#    #+#              #
-#    Updated: 2019/11/28 19:00:47 by rbeaufre         ###   ########.fr        #
+#    Updated: 2019/12/02 14:46:42 by gmoindro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,9 @@ SRC_RAW =  get_next_line.c \
 			fill_adjacent_list_add_tunnel.c \
 			fill_adjacent_list_handle_modifier.c \
 			map_output_utils.c \
+			print_ant_moves.c \
+			print_ant_moves_utils.c \
+			print_ant_moves_inits.c \
 			algo.c \
 			bfs_gaspard.c \
 			ft_put_bibli.c
@@ -58,7 +61,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(subst .c,.o,$(SRC_RAW)))
 HEADERS = lem_in.h
 
 CCC = gcc
-CFLAGS = -Wall -Wextra -Werror -I$(LIBFT_DIR)
+CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror -I$(LIBFT_DIR)
 
 GREEN := "\033[0;32m"
 CYAN := "\033[0;36m"

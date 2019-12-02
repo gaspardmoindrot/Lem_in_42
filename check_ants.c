@@ -6,7 +6,7 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 19:24:27 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/28 21:06:29 by rbeaufre         ###   ########.fr       */
+/*   Updated: 2019/12/01 13:56:52 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int			ft_check_ants(t_params **params)
 	char	*str2;
 
 	str = NULL;
-	if (read(0, str, 0) < 0 ||(get_next_line(0, &str) == -1) ||
+	if (read(0, str, 0) < 0 || (get_next_line(0, &str) == -1) ||
 			(!str && ft_cast_error_empty(params, &str)))
 		return (-2);
 	i = ft_is_plus_minus(str[0]) ? 1 : 0;

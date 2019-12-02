@@ -6,7 +6,7 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 17:29:15 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/28 19:02:46 by rbeaufre         ###   ########.fr       */
+/*   Updated: 2019/12/02 10:02:46 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,8 @@ int		ft_initialize_params(t_params **params)
 	(*params)->path_start_end = ft_strdup("");
 	(*params)->length_path_start_end = 0;
 	(*params)->map = ft_strdup("");
+	(*params)->cycle_number = 0;
+	(*params)->ants_launched = 0;
+	(*params)->index = -1;
 	return (1);
 }

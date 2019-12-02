@@ -209,6 +209,7 @@ void	ft_algo(t_params **params, t_list **list)
 		ft_put_bibli(list, &result[index], index);
 		index++;
 	}
+	//ft_print_ant_moves(result, params);
 
 	int	l = -1;                      // test
 	while (++l < index)                  // test

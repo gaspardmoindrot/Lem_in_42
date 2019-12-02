@@ -49,10 +49,10 @@ void		ft_put_bibli(t_list **list, t_list **result, int i)
 				if (tmp_2->arcw == 1)
 				{
 					ft_printf("-> %s ", node_2->name); //printf
-					
+
 					new = ft_lstnew_revisited(node_2, sizeof(t_node));
 					ft_lstadd_back(&result[j], new);
-					
+
 					if (node_2->is_end == 1)
 						break;
 					tmp_2 = node_2->next;
