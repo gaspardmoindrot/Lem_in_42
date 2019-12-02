@@ -6,7 +6,7 @@
 #    By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/03 14:03:16 by rbeaufre          #+#    #+#              #
-#    Updated: 2019/12/02 17:59:51 by gmoindro         ###   ########.fr        #
+#    Updated: 2019/12/02 18:23:39 by gmoindro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,6 @@ SRC_RAW =  get_next_line.c \
 			algo.c \
 			bfs_gaspard.c \
 			ft_put_bibli.c \
-			ft_put_arcw.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_RAW))
 
