@@ -82,7 +82,8 @@ int    main(void)
 	}
 	if (PRINT == 1)
 		ft_print_general_details(&list, &params);
+	ft_algo(&params, &list);
 	ft_free_adjacent_list(&list);
 	ft_free_params(&params);
-    return (0);
+	return (0);
 }

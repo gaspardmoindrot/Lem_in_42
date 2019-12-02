@@ -21,25 +21,19 @@ static void		ft_stack_virgin_neighbours(t_node **queue, int *i, int *j)
 	while (tmp)
 	{
 		node = (t_node *)tmp->content;
-		if (((node->passed_flag == 0 && (queue[*i]->chance_one % 2 != 1 || queue[*i]->passed_flag == 1))
-					|| (node->passed_flag == 5 && ((queue[*i]->chance_one % 2 == 0 && queue[*i]->passed_flag == 1)
+		if (((node->passed_flag == 0 && (queue[*i]->chance_one != 1 || queue[*i]->passed_flag == 1))
+					|| (node->passed_flag == 5 && (queue[*i]->chance_one == 0
 						|| (queue[*i]->passed_flag == -5 && tmp->arcw == -1)) && queue[*i]->is_start == 0))
 			&& tmp->arcw <= 0 && !(node->is_end == 1 && queue[*i]->passed_flag == -5))
 		{
-			if (node->passed_flag == 5 && queue[*i]->chance_one % 2 == 0
-					&& queue[*i]->passed_flag == 1)
+			if (node->passed_flag == 5 && queue[*i]->chance_one == 0)
 			{
-				node->chance_one = queue[*i]->chance_one + 1;
+				node->chance_one = 1;
 				node->passed_flag = -5;
 			}
-			else if (node->passed_flag == 5 && queue[*i]->chance_one % 2 == 0)
-            {
-                node->chance_one = queue[*i]->chance_one;
-                node->passed_flag = -5;
-            }
 			else if (node->passed_flag == 5)
 			{
-				node->chance_one = queue[*i]->chance_one + 1;
+				node->chance_one = 2;
 				node->passed_flag = -5;
 			}
 			else if (node->passed_flag == 0)

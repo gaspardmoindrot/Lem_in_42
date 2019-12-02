@@ -117,4 +117,10 @@ int		ft_lin(t_params **params, int i, char **str);
 int		ft_lsharp(t_params **params, char **str);
 void	ft_tunnel_add_success(t_params **params, char **str);
 
+void	ft_algo(t_params **params, t_list **list);
+t_list	***ft_malloc_result(t_params **params, t_list **list);
+int	ft_bfs_gaspard(t_list **list, t_params **params, t_node *start);
+void	ft_put_bibli(t_list **list, t_list ***result, int i);
+void	ft_put_arcw(t_node *end, t_list **list);
+
 #endif

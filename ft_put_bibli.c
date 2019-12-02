@@ -13,7 +13,7 @@ static void	ft_lstadd_back(t_list **alst, t_list *new)
 	}
 }
 
-void		ft_put_bibli(t_list **list, t_list **result, int i)
+void		ft_put_bibli(t_list **list, t_list ***result, int i)
 {
 	t_list	*tmp;
 	t_list	*tmp_2;
@@ -32,15 +32,15 @@ void		ft_put_bibli(t_list **list, t_list **result, int i)
 		node = (t_node *) tmp->content;
 		if (tmp->arcw == 1 && i >= j)
 		{
-			ft_printf("%s", ft_find_t_node_with_start(list)->name); //printf
+			ft_printf("%d : %s", j,ft_find_t_node_with_start(list)->name); //printf
 			ft_printf(" -> %s ", node->name); //printf
 
-			result[j] = (t_list *)malloc(sizeof(t_list));
-			result[j]->content = ft_find_t_node_with_start(list);
-			result[j]->content_size = sizeof(t_node);
-			result[j]->next = NULL;
+			result[i][j] = (t_list *)malloc(sizeof(t_list));
+			result[i][j]->content = ft_find_t_node_with_start(list);
+			result[i][j]->content_size = sizeof(t_node);
+			result[i][j]->next = NULL;
 			new = ft_lstnew_revisited(node, sizeof(t_node));
-			ft_lstadd_back(&result[j], new);
+			ft_lstadd_back(&result[i][j], new);
 
 			tmp_2 = node->next;
 			while (tmp_2)
@@ -49,10 +49,10 @@ void		ft_put_bibli(t_list **list, t_list **result, int i)
 				if (tmp_2->arcw == 1)
 				{
 					ft_printf("-> %s ", node_2->name); //printf
-
+					
 					new = ft_lstnew_revisited(node_2, sizeof(t_node));
-					ft_lstadd_back(&result[j], new);
-
+					ft_lstadd_back(&result[i][j], new);
+					
 					if (node_2->is_end == 1)
 						break;
 					tmp_2 = node_2->next;

@@ -6,7 +6,7 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 07:39:34 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/12/02 14:19:28 by gmoindro         ###   ########.fr       */
+/*   Updated: 2019/11/28 20:55:16 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,6 @@ struct	s_params
 	char	*path_start_end;
 	int		length_path_start_end;
 	char	*map;
-	int		index;
-	int		cycle_number;
-	int		ants_launched;
 };
 
 typedef struct s_node		t_node;
@@ -131,22 +128,14 @@ int		ft_handle_end(t_node **queue, t_params **params, int i);
 void	ft_print_father_list(t_node *end, t_params **params);
 void	ft_add_return_line(t_params **params);
 void	ft_print_map(t_params **params);
-int		ft_nb_rooms(t_list **bib, int path_nb);
-void	ft_print_ant_moves(t_list **bib, t_params **params);
-t_list	**ft_create_fake_bib(void);
-void	ft_print_tab(int *tab, int index);
-void	ft_fill_length(int *length, t_list **bib, int index);
-void	ft_print_bibli(t_list **result, int i);
-void	ft_init_ants(t_list **ants, int ant_count);
-void	ft_init_ants_start(int *ants_start, int index);
 
-void	ft_algo(t_params **params, t_list **list);
-void	ft_reset_passed_flags_gasp(t_list **list);
+void		ft_algo(t_params **params, t_list **list);
+void		ft_reset_passed_flags_gasp(t_list **list);
 int		ft_bfs_gaspard(t_list **list, t_params **params, t_node *start);
-void	ft_put_arcw(t_node *end, t_list **list);
-void	ft_put_bibli(t_list **list, t_list **result, int i);
-t_list	**ft_malloc_result(t_params **params, t_list **list);
+void		ft_put_arcw(t_node *end, t_list **list);
+void		ft_put_bibli(t_list **list, t_list ***result, int i);
+t_list		***ft_malloc_result(t_params **params, t_list **list);
 int		ft_connect_start(t_list **list);
-void	ft_test_voisin(t_node *node);
+void		ft_test_voisin(t_node *node);
 
 #endif

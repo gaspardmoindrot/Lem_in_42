@@ -151,23 +151,23 @@ void		ft_test_flag(t_list **list)
 	ft_putchar('\n');
 }
 
-t_list		**ft_malloc_result(t_params **params, t_list **list)
+t_list		***ft_malloc_result(t_params **params, t_list **list)
 {
 	int     size;
 	int     i;
-	t_list	**result;
+	t_list	***result;
 
 	i = -1;
 	if ((*params)->ant_count >= ft_connect_start(list))
 		size = ft_connect_start(list);
 	else
 		size = (*params)->ant_count;
-	if (!(result = (t_list **)malloc(sizeof(t_list *) * (size + 1))))
-		return(NULL);
+	if (!(result = (t_list ***)malloc(sizeof(t_list *) * (size + 1))))
+		return (NULL);
 	return (result);
 }
 
-void    print_bibli(t_list **result, int i)
+void    print_bibli(t_list ***result, int i)
 {
         t_node  *node;
         t_list  *tmp;
@@ -177,9 +177,9 @@ void    print_bibli(t_list **result, int i)
         ft_printf("\n");
         while (++j <= i)
         {
-                node = (t_node *) result[j]->content;
+                node = (t_node *)((*result)[j]->content);
                 ft_printf("%s ", node->name);
-                tmp = result[j]->next;
+                tmp = (*result)[j]->next;
                 while (tmp)
                 {
                         node = (t_node *) tmp->content;
@@ -194,22 +194,21 @@ void	ft_algo(t_params **params, t_list **list)
 {
 	t_node	*node;
 	int	index;
-	t_list	**result;
+	t_list	***result;
 
 	index = 0;
 	node = ft_find_t_node_with_start(list);
 	result = ft_malloc_result(params, list);
-	while (index < (*params)->ant_count && ft_bfs_gaspard(list, params, node) > 0)
+	while (index < (*params)->ant_count && index < ft_connect_start(list) && ft_bfs_gaspard(list, params, node) > 0)
 	{
-		if (!(result[index] = (t_list *)malloc(sizeof(t_list) * (index + 1))))
+		if (!(result[index] = (t_list **)malloc(sizeof(t_list) * (index + 1))))
 			return ;
 		//ft_test_flag(list);
 		ft_reset_passed_flags_gasp(list);
 		//ft_test_g(list);
-		ft_put_bibli(list, &result[index], index);
+		ft_put_bibli(list, result, index);
 		index++;
 	}
-	//ft_print_ant_moves(result, params);
 
 	int	l = -1;                      // test
 	while (++l < index)                  // test
