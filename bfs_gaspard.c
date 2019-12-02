@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bfs_gaspard.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmoindro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/02 17:15:01 by gmoindro          #+#    #+#             */
+/*   Updated: 2019/12/02 17:20:10 by gmoindro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
 static void		ft_add_path_history(t_node **son, t_node **father)
@@ -21,10 +33,12 @@ static void		ft_stack_virgin_neighbours(t_node **queue, int *i, int *j)
 	while (tmp)
 	{
 		node = (t_node *)tmp->content;
-		if (((node->passed_flag == 0 && (queue[*i]->chance_one != 1 || queue[*i]->passed_flag == 1))
-					|| (node->passed_flag == 5 && (queue[*i]->chance_one == 0
-						|| (queue[*i]->passed_flag == -5 && tmp->arcw == -1)) && queue[*i]->is_start == 0))
-			&& tmp->arcw <= 0 && !(node->is_end == 1 && queue[*i]->passed_flag == -5))
+		if (((node->passed_flag == 0 && (queue[*i]->chance_one != 1
+				|| queue[*i]->passed_flag == 1)) || (node->passed_flag == 5
+				&& (queue[*i]->chance_one == 0 || (queue[*i]->passed_flag == -5
+					&& tmp->arcw == -1)) && queue[*i]->is_start == 0))
+			&& tmp->arcw <= 0
+			&& !(node->is_end == 1 && queue[*i]->passed_flag == -5))
 		{
 			if (node->passed_flag == 5 && queue[*i]->chance_one == 0)
 			{
@@ -49,11 +63,11 @@ static void		ft_stack_virgin_neighbours(t_node **queue, int *i, int *j)
 	}
 }
 
-int			ft_bfs_gaspard(t_list **list, t_params **params, t_node *start)
+int				ft_bfs_gaspard(t_list **list, t_params **params, t_node *start)
 {
 	t_node		**queue;
-	int		i;
-	int		j;
+	int			i;
+	int			j;
 
 	i = 0;
 	(void)list;

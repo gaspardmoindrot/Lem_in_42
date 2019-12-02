@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algo.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmoindro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/02 17:10:43 by gmoindro          #+#    #+#             */
+/*   Updated: 2019/12/02 17:28:41 by gmoindro         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
-void		ft_put_arcw(t_node *end, t_list **list)
+static void	ft_put_arcw_init(t_node *end)
 {
-	t_list	*tmp;
-	t_node	*node;
-	t_node	*start;
+	t_list  *tmp;
+    t_node  *node;
 
 	tmp = end->father;
 	end->passed_flag = 2;
@@ -14,6 +25,15 @@ void		ft_put_arcw(t_node *end, t_list **list)
 		node->passed_flag = 2;
 		tmp = node->father;
 	}
+}
+
+void		ft_put_arcw(t_node *end, t_list **list)
+{
+	t_list	*tmp;
+	t_node	*node;
+	t_node	*start;
+
+	ft_put_arcw_init(end);
 	start = ft_find_t_node_with_start(list);
 	tmp = start->next;
 	start->passed_flag = 3;
@@ -37,30 +57,30 @@ void		ft_put_arcw(t_node *end, t_list **list)
 	while (tmp)
 	{
 		node = (t_node *)tmp->content;
-                if (node->passed_flag == 3 && tmp->arcw >= 0)
-                {
-                        node->passed_flag = 0;
-                        if (tmp->arcw == 1)
+		if (node->passed_flag == 3 && tmp->arcw >= 0)
+		{
+			node->passed_flag = 0;
+			if (tmp->arcw == 1)
 			{
-                                tmp->arcw = 0;
+				tmp->arcw = 0;
 				ft_test_voisin(node);
 			}
-                        else
+			else
 			{
-                                tmp->arcw = -1;
+				tmp->arcw = -1;
 				node->passed_flag = 5;
 			}
-                        tmp = node->next;
-                }
-                else
-                        tmp = tmp->next;
+			tmp = node->next;
+		}
+		else
+			tmp = tmp->next;
 	}
 }
 
-void	ft_test_voisin(t_node *node)
+void		ft_test_voisin(t_node *node)
 {
 	t_list	*tmp;
-	int	count;
+	int		count;
 
 	count = 0;
 	tmp = node->next;
@@ -76,7 +96,7 @@ void	ft_test_voisin(t_node *node)
 		node->passed_flag = 5;
 }
 
-void	ft_reset_passed_flags_gasp(t_list **list)
+void		ft_reset_passed_flags_gasp(t_list **list)
 {
 	t_list *tmp;
 	t_node *node;
@@ -94,35 +114,11 @@ void	ft_reset_passed_flags_gasp(t_list **list)
 	}
 }
 
-void	ft_test_g(t_list **list)
-{
-	t_list *tmp;
-	t_list *tmp_2;
-	t_node *node;
-
-	tmp = *list;
-	ft_putchar('\n');
-	while (tmp && tmp->content && ((t_node *) tmp->content)->name)
-	{
-		node = (t_node *) tmp->content;
-		tmp_2 = node->next;
-		ft_printf("%s ||", node->name);
-		while (tmp_2)
-		{
-			node = (t_node *) tmp_2->content;
-			ft_printf("-> %s:%d ", node->name, tmp_2->arcw);
-			tmp_2 = tmp_2 -> next;
-		}
-		ft_printf("\n");
-		tmp = tmp->next;
-	}
-}
-
-int	ft_connect_start(t_list **list)
+int			ft_connect_start(t_list **list)
 {
 	t_node	*start;
 	t_list	*tmp;
-	int	count;
+	int		count;
 
 	start = ft_find_t_node_with_start(list);
 	tmp = start->next;
@@ -135,26 +131,10 @@ int	ft_connect_start(t_list **list)
 	return (count);
 }
 
-void		ft_test_flag(t_list **list)
-{
-	t_list *tmp;
-        t_node *node;
-
-        tmp = *list;
-        ft_putchar('\n');
-        while (tmp->next)
-        {
-                node = (t_node *) tmp->content;
-		ft_printf("%s - %d -> %d\n", node->name, node->passed_flag, node->chance_one);
-                tmp = tmp->next;
-        }
-	ft_putchar('\n');
-}
-
 t_list		***ft_malloc_result(t_params **params, t_list **list)
 {
-	int     size;
-	int     i;
+	int		size;
+	int		i;
 	t_list	***result;
 
 	i = -1;
@@ -167,50 +147,49 @@ t_list		***ft_malloc_result(t_params **params, t_list **list)
 	return (result);
 }
 
-void    print_bibli(t_list ***result, int i)
-{
-        t_node  *node;
-        t_list  *tmp;
-        int     j;
-
-        j = -1;
-        ft_printf("\n");
-        while (++j <= i)
-        {
-                node = (t_node *)((*result)[j]->content);
-                ft_printf("%s ", node->name);
-                tmp = (*result)[j]->next;
-                while (tmp)
-                {
-                        node = (t_node *) tmp->content;
-                        ft_printf("-> %s ", node->name);
-                        tmp = tmp->next;
-                }
-                ft_printf("\n");
-        }
-}
-
-void	ft_algo(t_params **params, t_list **list)
+void		print_bibli(t_list ***result, int i)
 {
 	t_node	*node;
-	int	index;
+	t_list	*tmp;
+	int		j;
+
+	j = -1;
+	ft_printf("\n");
+	while (++j <= i)
+	{
+		node = (t_node *)((*result)[j]->content);
+		ft_printf("%s ", node->name);
+		tmp = (*result)[j]->next;
+		while (tmp)
+		{
+			node = (t_node *)tmp->content;
+			ft_printf("-> %s ", node->name);
+			tmp = tmp->next;
+		}
+		ft_printf("\n");
+	}
+}
+
+void		ft_algo(t_params **params, t_list **list)
+{
+	t_node	*node;
+	int		index;
 	t_list	***result;
 
 	index = 0;
 	node = ft_find_t_node_with_start(list);
 	result = ft_malloc_result(params, list);
-	while (index < (*params)->ant_count && index < ft_connect_start(list) && ft_bfs_gaspard(list, params, node) > 0)
+	while (index < (*params)->ant_count && index < ft_connect_start(list)
+			&& ft_bfs_gaspard(list, params, node) > 0)
 	{
 		if (!(result[index] = (t_list **)malloc(sizeof(t_list) * (index + 1))))
 			return ;
-		//ft_test_flag(list);
 		ft_reset_passed_flags_gasp(list);
-		//ft_test_g(list);
 		ft_put_bibli(list, result, index);
 		index++;
 	}
-
-	int	l = -1;                      // test
-	while (++l < index)                  // test
-        	print_bibli(&result[l], l);  // test
+	int		l;
+	l = -1;
+	while (++l < index)
+		print_bibli(&result[l], l);
 }
