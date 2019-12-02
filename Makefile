@@ -6,7 +6,7 @@
 #    By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/03 14:03:16 by rbeaufre          #+#    #+#              #
-#    Updated: 2019/12/02 14:46:42 by gmoindro         ###   ########.fr        #
+#    Updated: 2019/12/02 15:18:28 by gmoindro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ OBJ = $(addprefix $(OBJ_DIR)/, $(subst .c,.o,$(SRC_RAW)))
 HEADERS = lem_in.h
 
 CCC = gcc
-CFLAGS = -g -fsanitize=address -Wall -Wextra -Werror -I$(LIBFT_DIR)
+CFLAGS = -Wall -Wextra -Werror -I$(LIBFT_DIR)
 
 GREEN := "\033[0;32m"
 CYAN := "\033[0;36m"
