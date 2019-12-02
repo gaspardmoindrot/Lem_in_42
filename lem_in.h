@@ -6,7 +6,7 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 07:39:34 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/12/02 18:02:11 by gmoindro         ###   ########.fr       */
+/*   Updated: 2019/12/02 18:48:16 by gmoindro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,6 @@ void		ft_put_arcw(t_node *end, t_list **list);
 void		ft_put_bibli(t_list **list, t_list ***result, int i);
 t_list		***ft_malloc_result(t_params **params, t_list **list);
 int		ft_connect_start(t_list **list);
-void		ft_test_voisin(t_node *node);
+void		ft_test_voisin(t_node *node, t_list *tmp);
 
 #endif

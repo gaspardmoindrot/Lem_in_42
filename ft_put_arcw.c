@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmoindro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/02 17:58:23 by gmoindro          #+#    #+#             */
-/*   Updated: 2019/12/02 18:00:48 by gmoindro         ###   ########.fr       */
+/*   Created: 2019/12/02 18:37:32 by gmoindro          #+#    #+#             */
+/*   Updated: 2019/12/02 18:47:52 by gmoindro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,20 +53,11 @@ static void	ft_put_arcw_flag_start(t_list **list)
 	}
 }
 
-static void	ft_put_arcw_passed(t_node *node, t_list *tmp)
+static void	ft_put_arcw_end(t_node *end, t_list **list)
 {
-	node->passed_flag = 0;
-	if (tmp->arcw == 1)
-	{
-		tmp->arcw = 0;
-		ft_test_voisin(node);
-	}
-	else
-	{
-		tmp->arcw = -1;
-		node->passed_flag = 5;
-	}
-	tmp = node->next;
+	ft_put_arcw_init(end);
+	ft_put_arcw_flag_start(list);
+	end->passed_flag = 0;
 }
 
 void		ft_put_arcw(t_node *end, t_list **list)
@@ -74,26 +65,34 @@ void		ft_put_arcw(t_node *end, t_list **list)
 	t_list	*tmp;
 	t_node	*node;
 
-	ft_put_arcw_init(end);
-	ft_put_arcw_flag_start(list);
 	tmp = end->next;
-	end->passed_flag = 0;
+	ft_put_arcw_end(end, list);
 	while (tmp)
 	{
 		node = (t_node *)tmp->content;
 		if (node->passed_flag == 3 && tmp->arcw >= 0)
-			ft_put_arcw_passed(node, tmp);
+		{
+			node->passed_flag = 0;
+			if (tmp->arcw == 1)
+				ft_test_voisin(node, tmp);
+			else
+			{
+				tmp->arcw = -1;
+				node->passed_flag = 5;
+			}
+			tmp = node->next;
+		}
 		else
 			tmp = tmp->next;
 	}
 }
 
-void		ft_test_voisin(t_node *node)
+void		ft_test_voisin(t_node *node, t_list *tmp)
 {
-	t_list	*tmp;
 	int		count;
 
 	count = 0;
+	tmp->arcw = 0;
 	tmp = node->next;
 	while (tmp)
 	{
