@@ -21,7 +21,7 @@ Your program cannot have memory leaks. You have to handle errors in a sensitive 
 
 
 
-
+-------------
 ## Installation and usage
 
 Simply clone repository and run following commands:
@@ -34,7 +34,7 @@ Simply clone repository and run following commands:
 
 
 
-
+-------------
 ## How lem_in works
 
 The executable reads the map sent previously to the standard input; several steps will then take place.
