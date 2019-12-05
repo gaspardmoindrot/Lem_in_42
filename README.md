@@ -64,6 +64,6 @@ Big steps :
 `* Finding the best paths in terms of our number of ants to pass`
 
 
-#### Finally, we print the ants taking the paths step by step in this way :
+#### Finally, we print the maps and the ants taking the paths step by step :
 
 ((((PICTURE))))
