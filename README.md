@@ -72,4 +72,5 @@ Big steps :
 ## Author
 
 Gaspard Moindrot (gmoindro)
+
 Raphael Beaufret (rbeaufre)
