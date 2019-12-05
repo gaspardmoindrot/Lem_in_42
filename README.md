@@ -50,7 +50,7 @@ The executable reads the map sent previously to the standard input; several step
 
 Example below :
 
-![Capture d’écran 2019-12-05 à 15 18 49](https://user-images.githubusercontent.com/44836297/70245096-d166a900-1775-11ea-89df-92f6204adcf9.png)
+![Capture d’écran 2019-12-05 à 15 18 49](https://user-images.githubusercontent.com/44836297/70245581-99ac3100-1776-11ea-9bed-1671b3716e09.png)
 
 
 #### Then, we search with our algo the best path for the number of given ants
@@ -66,4 +66,4 @@ Big steps :
 
 #### Finally, we print the maps and the ants taking the paths step by step :
 
-    ![Capture d’écran 2019-12-05 à 15 37 30](https://user-images.githubusercontent.com/44836297/70245330-2d313200-1776-11ea-855b-a08906a24605.png)
+![Capture d’écran 2019-12-05 à 15 37 30](https://user-images.githubusercontent.com/44836297/70245573-95801380-1776-11ea-9e32-c005a6229d2a.png)
