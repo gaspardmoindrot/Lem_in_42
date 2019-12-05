@@ -17,7 +17,6 @@ Your program cannot have memory leaks. You have to handle errors in a sensitive 
 `* perror`
 `* exit`
 
--------------
 
 ## Installation and usage
 
@@ -29,5 +28,33 @@ Simply clone repository and run following commands:
 
 'input_/input10nodes1' is an exemple, you can try with other map.
 
--------------
 
+## How lem_in works
+
+The executable reads the map sent previously to the standard input; several steps will then take place.
+
+##### First, we check if the map is valid, it must respect the following constraints:
+
+`* Number of ant at the top of the file then declaration of rooms and finally connections between rooms`
+
+`* Start and end declared`
+
+`* A path between start and end`
+
+Example below :
+
+((((PICTURE))))
+
+##### Then, we search with our algo the best path for the number of given ants
+
+Big steps :
+
+`* Storage of rooms & connections in adjacent lists`
+
+`* A version similar to the Edmonds-Karp algorithm (& BFS) -> Our capacities are not on the connections but on the rooms (go see 'ressources/Schéma Edmonds-Karp - Graphe compliqué.pdf' if you want a concrete example)`
+
+`* Finding the best paths in terms of our number of ants to pass`
+
+##### Finally, we print the ants taking the paths step by step in this way :
+
+((((PICTURE))))
