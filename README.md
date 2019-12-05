@@ -33,7 +33,7 @@ Simply clone repository and run following commands:
 
 The executable reads the map sent previously to the standard input; several steps will then take place.
 
-##### First, we check if the map is valid, it must respect the following constraints:
+#### First, we check if the map is valid, it must respect the following constraints:
 
 `* Number of ant at the top of the file then declaration of rooms and finally connections between rooms`
 
@@ -45,7 +45,7 @@ Example below :
 
 ((((PICTURE))))
 
-##### Then, we search with our algo the best path for the number of given ants
+#### Then, we search with our algo the best path for the number of given ants
 
 Big steps :
 
@@ -55,6 +55,6 @@ Big steps :
 
 `* Finding the best paths in terms of our number of ants to pass`
 
-##### Finally, we print the ants taking the paths step by step in this way :
+#### Finally, we print the ants taking the paths step by step in this way :
 
 ((((PICTURE))))
