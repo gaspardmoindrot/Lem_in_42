@@ -67,3 +67,9 @@ Big steps :
 #### Finally, we print the maps and the ants taking the paths step by step :
 
 ![Capture d’écran 2019-12-05 à 15 37 30](https://user-images.githubusercontent.com/44836297/70245573-95801380-1776-11ea-9e32-c005a6229d2a.png)
+
+-------------
+## Author
+
+Gaspard Moindrot (gmoindro)
+Raphael Beaufret (rbeaufre)
