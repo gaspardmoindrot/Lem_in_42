@@ -66,4 +66,4 @@ Big steps :
 
 #### Finally, we print the maps and the ants taking the paths step by step :
 
-![Capture d’écran 2019-12-05 à 15 37 30](https://user-images.githubusercontent.com/44836297/70245330-2d313200-1776-11ea-855b-a08906a24605.png)
+    ![Capture d’écran 2019-12-05 à 15 37 30](https://user-images.githubusercontent.com/44836297/70245330-2d313200-1776-11ea-855b-a08906a24605.png)
