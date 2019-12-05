@@ -50,7 +50,7 @@ The executable reads the map sent previously to the standard input; several step
 
 Example below :
 
-((((PICTURE))))
+![Capture d’écran 2019-12-05 à 15 18 49](https://user-images.githubusercontent.com/44836297/70245096-d166a900-1775-11ea-89df-92f6204adcf9.png)
 
 
 #### Then, we search with our algo the best path for the number of given ants
