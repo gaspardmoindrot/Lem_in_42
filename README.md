@@ -4,6 +4,8 @@
 
 -------------
 
+
+
 ## Challenge
 
 The goal of this project is to find the quickest way to get n ants across the farm. Quickest way means the solution with the least number of lines, respecting the output format requested below.
@@ -18,6 +20,8 @@ Your program cannot have memory leaks. You have to handle errors in a sensitive 
 `* exit`
 
 
+
+
 ## Installation and usage
 
 Simply clone repository and run following commands:
@@ -29,11 +33,14 @@ Simply clone repository and run following commands:
 'input_/input10nodes1' is an exemple, you can try with other map.
 
 
+
+
 ## How lem_in works
 
 The executable reads the map sent previously to the standard input; several steps will then take place.
 
-#### First, we check if the map is valid, it must respect the following constraints:
+
+#### First, we check if the map is valid, it must respect the following constraints :
 
 `* Number of ant at the top of the file then declaration of rooms and finally connections between rooms`
 
@@ -45,6 +52,7 @@ Example below :
 
 ((((PICTURE))))
 
+
 #### Then, we search with our algo the best path for the number of given ants
 
 Big steps :
@@ -54,6 +62,7 @@ Big steps :
 `* A version similar to the Edmonds-Karp algorithm (& BFS) -> Our capacities are not on the connections but on the rooms (go see 'ressources/Schéma Edmonds-Karp - Graphe compliqué.pdf' if you want a concrete example)`
 
 `* Finding the best paths in terms of our number of ants to pass`
+
 
 #### Finally, we print the ants taking the paths step by step in this way :
 
