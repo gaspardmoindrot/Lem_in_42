@@ -1,6 +1,6 @@
 # lem_in - 42 project
 
-##### This project is meant to make you code an ant farm manager.
+#### This project is meant to make you code an ant farm manager.
 
 -------------
 
