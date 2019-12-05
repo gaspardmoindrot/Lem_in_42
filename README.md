@@ -10,15 +10,24 @@ The goal of this project is to find the quickest way to get n ants across the fa
 
 Your program cannot have memory leaks. You have to handle errors in a sensitive manner. In no way can your program quit in an unexpected manner (Segmentation fault, bus error, double free, etc). Your project must be written in C in accordance with the Norm. Within your mandatory part you are allowed to use the following functions:
 `* malloc`
-
 `* free`
-
 `* read`
-
 `* write`
-
 `* strerror`
-
 `* perror`
-
 `* exit`
+
+-------------
+
+## Installation and usage
+
+Simply clone repository and run following commands:
+
+    make
+    
+    ./lem-in < input_/input10nodes1
+
+'input_/input10nodes1' is an exemple, you can try with other map.
+
+-------------
+
