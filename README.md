@@ -42,11 +42,11 @@ The executable reads the map sent previously to the standard input; several step
 
 #### First, we check if the map is valid, it must respect the following constraints :
 
-`* Number of ant at the top of the file then declaration of rooms and finally connections between rooms`
+    `* Number of ant at the top of the file then declaration of rooms and finally connections between rooms`
 
-`* Start and end declared`
+    `* Start and end declared`
 
-`* A path between start and end`
+    `* A path between start and end`
 
 Example below :
 
@@ -57,13 +57,13 @@ Example below :
 
 Big steps :
 
-`* Storage of rooms & connections in adjacent lists`
+    `* Storage of rooms & connections in adjacent lists`
 
-`* A version similar to the Edmonds-Karp algorithm (& BFS) -> Our capacities are not on the connections but on the rooms (go see 'ressources/Schéma Edmonds-Karp - Graphe compliqué.pdf' if you want a concrete example)`
+    `* A version similar to the Edmonds-Karp algorithm (& BFS) -> Our capacities are not on the connections but on the rooms (go see 'ressources/Schéma Edmonds-Karp - Graphe compliqué.pdf' if you want a concrete example)`
 
-`* Finding the best paths in terms of our number of ants to pass`
+    `* Finding the best paths in terms of our number of ants to pass`
 
 
 #### Finally, we print the maps and the ants taking the paths step by step :
 
-((((PICTURE))))
+![Capture d’écran 2019-12-05 à 15 37 30](https://user-images.githubusercontent.com/44836297/70245330-2d313200-1776-11ea-855b-a08906a24605.png)
