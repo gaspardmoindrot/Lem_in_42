@@ -6,7 +6,7 @@
 /*   By: gmoindro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 17:10:43 by gmoindro          #+#    #+#             */
-/*   Updated: 2019/12/02 18:46:53 by gmoindro         ###   ########.fr       */
+/*   Updated: 2019/12/03 17:20:50 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,29 +63,6 @@ t_list		***ft_malloc_result(t_params **params, t_list **list)
 	return (result);
 }
 
-void		print_bibli(t_list ***result, int i)
-{
-	t_node	*node;
-	t_list	*tmp;
-	int		j;
-
-	j = -1;
-	ft_printf("\n");
-	while (++j <= i)
-	{
-		node = (t_node *)((*result)[j]->content);
-		ft_printf("%s ", node->name);
-		tmp = (*result)[j]->next;
-		while (tmp)
-		{
-			node = (t_node *)tmp->content;
-			ft_printf("-> %s ", node->name);
-			tmp = tmp->next;
-		}
-		ft_printf("\n");
-	}
-}
-
 void		ft_algo(t_params **params, t_list **list)
 {
 	t_node	*node;
@@ -104,9 +81,7 @@ void		ft_algo(t_params **params, t_list **list)
 		ft_put_bibli(list, result, index);
 		index++;
 	}
-
-	int		l;
-	l = -1;
-	while (++l < index)
-		print_bibli(&result[l], l);
+	(*params)->index_max = index;
+	ft_print_ant_moves(result, params);
+	ft_free_bib(result, params);
 }

@@ -6,7 +6,7 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 15:04:10 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/28 20:34:32 by rbeaufre         ###   ########.fr       */
+/*   Updated: 2019/12/03 17:47:17 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void		ft_handle_end_dfs(t_params **params, t_node *fixed_start)
 {
 	char *str;
 
-	if (PRINT == 1)
+	if ((*params)->print == 1)
 	{
 		ft_printf("-----------------------\n{GREEN}[Success]{EOC}");
 		ft_printf("A path detected with {YELLOW}D{EOC}FS (recursive) from");
@@ -47,7 +47,7 @@ static void		ft_handle_end_dfs(t_params **params, t_node *fixed_start)
 	str = (*params)->path_start_end;
 	(*params)->path_start_end = ft_strjoin(str, fixed_start->name);
 	ft_strdel(&str);
-	if (PRINT == 1)
+	if ((*params)->print == 1)
 	{
 		ft_printf("{GREEN} %s{EOC}\n", (*params)->path_start_end);
 		ft_printf(" {YELLOW}%i{EOC}", (*params)->length_path_start_end);

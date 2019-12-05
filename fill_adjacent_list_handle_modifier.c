@@ -6,7 +6,7 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 16:13:51 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/28 19:41:02 by rbeaufre         ###   ########.fr       */
+/*   Updated: 2019/12/03 13:58:41 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int			ft_mod(t_params **params, t_list **list, char **str,
 {
 	if (ft_turn_on_start_or_end(params, *str, *i) == -1)
 		return (-1);
+	ft_add_to_map_output(params, *str);
 	ft_strdel(str);
 	get_next_line(0, str);
 	if (ft_is_modifier(*str) && (*params)->rooms_ended == 0 && (*i)++ > 0)

@@ -6,7 +6,7 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 10:45:19 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/28 20:45:40 by rbeaufre         ###   ########.fr       */
+/*   Updated: 2019/12/03 13:59:45 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int			ft_add_tunnel(t_list **list, char **str, t_params **params)
 			tmp = tmp->next;
 		}
 	}
-	ft_free_split(1, split);
+	ft_free_split_special(1, split);
 	if (count != 2 && ft_handle_non_two_error(params) == 1)
 		return (-1);
 	ft_tunnel_add_success(params, str);

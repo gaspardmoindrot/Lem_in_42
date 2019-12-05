@@ -6,7 +6,7 @@
 /*   By: gmoindro <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 17:20:26 by gmoindro          #+#    #+#             */
-/*   Updated: 2019/12/02 18:11:46 by gmoindro         ###   ########.fr       */
+/*   Updated: 2019/12/03 16:38:29 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void		ft_put_bibli(t_list **list, t_list ***result, int i)
 		{
 			init_result(result, list, i, j);
 			new = ft_lstnew_revisited(node[1], sizeof(t_node));
-			ft_lstadd_back(&result[i][j], new);
+			ft_lstadd_back(&(result[i][j]), new);
 			tmp_2 = node[1]->next;
 			ft_put_bibli_next(tmp_2, result[i][j]);
 			j++;

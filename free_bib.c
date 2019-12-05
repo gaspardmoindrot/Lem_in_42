@@ -1,49 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ant_moves_inits.c                            :+:      :+:    :+:   */
+/*   free_bib.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/02 08:38:26 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/12/02 17:13:07 by rbeaufre         ###   ########.fr       */
+/*   Created: 2019/12/03 16:38:03 by rbeaufre          #+#    #+#             */
+/*   Updated: 2019/12/03 17:11:39 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	ft_init_ants(t_list **ants, int ant_count)
+static void		ft_free_list_again(t_list *bib)
 {
-	int i;
+	t_list	*tmp;
+	t_list	*nxt;
 
-	i = 0;
-	while (i < ant_count)
+	tmp = bib->next;
+	while (tmp)
 	{
-		ants[i] = NULL;
-		i++;
+		nxt = tmp->next;
+		free(tmp);
+		tmp = nxt;
 	}
 }
 
-void	ft_init_length(int *length, int index)
+static void		ft_free_list(t_list ***bib, int i)
 {
-	int i;
+	int j;
 
-	i = 0;
-	while (i < index)
+	j = 0;
+	while (j <= i)
 	{
-		length[i] = 0;
-		i++;
+		ft_free_list_again(bib[i][j]);
+		free(bib[i][j]);
+		j++;
 	}
 }
 
-void	ft_init_ants_start(int *ants_start, int index)
+void			ft_free_bib(t_list ***bib, t_params **params)
 {
 	int i;
 
 	i = 0;
-	while (i < index)
+	while (i < (*params)->index_max)
 	{
-		ants_start[i] = 0;
+		ft_free_list(bib, i);
+		free(bib[i]);
 		i++;
 	}
+	free(bib);
 }

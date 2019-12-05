@@ -6,7 +6,7 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 07:39:34 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/12/02 18:48:16 by gmoindro         ###   ########.fr       */
+/*   Updated: 2019/12/03 17:49:38 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-
-# define PRINT (1)
-# define PRINT_LIST (0)
 
 typedef struct s_params		t_params;
 
@@ -45,6 +42,15 @@ struct	s_params
 	char	*path_start_end;
 	int		length_path_start_end;
 	char	*map;
+	int		index;
+	int		index_max;
+	int		best_index;
+	int		cycle_number;
+	int		best_cycle_number;
+	int		ants_launched;
+	int		allow_printing_moves;
+	int		print;
+	int		print_list;
 };
 
 typedef struct s_node		t_node;
@@ -78,9 +84,9 @@ int		ft_add_tunnel(t_list **list, char **str, t_params **params);
 int		ft_add_room(t_params **params, t_list **list, char **str);
 void	ft_print_adjacent_list(t_list **nodes);
 int		ft_browse_entry(t_list **nodes, t_params **params);
-int		ft_is_comment(char **str);
+int		ft_is_comment(char **str, t_params **params);
 int		ft_is_modifier(char *str);
-void	ft_free_split(int nbr, char **res);
+int		ft_free_split_special(int nbr, char **res);
 int		ft_get_split_size(char **str);
 int		ft_is_room_type(char **str);
 int		ft_is_tunnel_type(char **str);
@@ -115,7 +121,6 @@ int		ft_is_neighbor_with_name_hash(t_node *node, long hash);
 void	ft_reset_passed_flags(t_list **list);
 long	ft_hash(char *str);
 int		ft_check_ants(t_params **params);
-void	ft_free_fathers(t_list **list);
 void	ft_set_has_start_or_end(t_params **params, char *str);
 int		ft_lin(t_params **params, int i, char **str);
 int		ft_lsharp(t_params **params, char **str, int i);
@@ -128,14 +133,29 @@ int		ft_handle_end(t_node **queue, t_params **params, int i);
 void	ft_print_father_list(t_node *end, t_params **params);
 void	ft_add_return_line(t_params **params);
 void	ft_print_map(t_params **params);
-
-void		ft_algo(t_params **params, t_list **list);
-void		ft_reset_passed_flags_gasp(t_list **list);
+int		ft_nb_rooms(t_list **bib, int path_nb);
+void	ft_print_ant_moves(t_list ***bib, t_params **params);
+t_list	**ft_create_fake_bib(void);
+void	ft_print_tab(int *tab, int index);
+void	ft_fill_length(int *length, t_list **bib, int index);
+void	ft_print_bibli(t_list **result, int i);
+void	ft_init_ants(t_list **ants, int ant_count);
+void	ft_init_ants_start(int *ants_start, int index);
+void	ft_algo(t_params **params, t_list **list);
+void	ft_reset_passed_flags_gasp(t_list **list);
 int		ft_bfs_gaspard(t_list **list, t_params **params, t_node *start);
-void		ft_put_arcw(t_node *end, t_list **list);
-void		ft_put_bibli(t_list **list, t_list ***result, int i);
-t_list		***ft_malloc_result(t_params **params, t_list **list);
+void	ft_put_arcw(t_node *end, t_list **list);
+void	ft_put_bibli(t_list **list, t_list ***result, int i);
+t_list	***ft_malloc_result(t_params **params, t_list **list);
 int		ft_connect_start(t_list **list);
-void		ft_test_voisin(t_node *node, t_list *tmp);
+void	ft_test_voisin(t_node *node, t_list *tmp);
+void	ft_init_length(int *length, int index);
+void	ft_free_bib(t_list ***bib, t_params **params);
+void	ft_add_to_map_output(t_params **params, char *str);
+void	ft_print_first_round(int *ants_start,
+		t_list **ants, t_params **params, t_list **bib);
+void	ft_print_other_rounds(int *ants_end, t_list **ants,
+		t_params **params);
+int		ft_free_str(char **str);
 
 #endif

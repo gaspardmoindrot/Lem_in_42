@@ -6,7 +6,7 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 16:32:05 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/12/02 17:59:59 by gmoindro         ###   ########.fr       */
+/*   Updated: 2019/12/03 17:47:41 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ int				ft_browse_entry(t_list **list, t_params **params)
 
 	str = NULL;
 	if (ft_check_ants(params) == -2)
-		return (-2) ;
+		return (-2);
 	i = 1;
 	while (get_next_line(0, &str) && i++ > 0)
 	{
-		if (ft_is_comment(&str))
+		if (ft_is_comment(&str, params))
 			i = i * 1;
 		else if (ft_is_modifier(str) || ft_is_room_type(&str) ||
 				ft_is_tunnel_type(&str))
@@ -99,11 +99,10 @@ int				main(void)
 		ft_print_parsing_error_non_fatal(&params);
 	if (params->fatal_error == 1 && ft_handle_fatal(&params, &list) == 1)
 		return (0);
-	if (PRINT == 1)
+	if (params->print == 1)
 		ft_print_general_details(&list, &params);
 	ft_print_map(&params);
 	ft_algo(&params, &list);
-	// ft_print_ant_moves
 	ft_free_adjacent_list(&list);
 	ft_free_params(&params);
 	return (0);

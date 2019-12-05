@@ -6,7 +6,7 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 10:44:20 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/28 19:14:59 by rbeaufre         ###   ########.fr       */
+/*   Updated: 2019/12/03 16:42:56 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	ft_set_is_start_is_end(t_params **params, t_node *node)
 	node->is_end = (*params)->next_is_end;
 }
 
-static void	ft_add_to_map_output(t_params **params, char *str)
+void		ft_add_to_map_output(t_params **params, char *str)
 {
 	char *str2;
 
@@ -54,12 +54,12 @@ int			ft_add_room(t_params **params, t_list **list, char **str)
 	t_list	*new;
 
 	split = ft_strsplit(*str, ' ');
-	if ((ft_check_room_exists(list, ft_hash(split[0]), params) != -1) ||
+	if (((ft_check_room_exists(list, ft_hash(split[0]), params) != -1) ||
 		ft_check_coords_exist(list, ft_atoi(split[1]), ft_atoi(split[2]),
-			params) == 1)
+			params) == 1) && ft_free_split_special(2, split))
 		return (-1);
 	node = (t_node *)malloc(sizeof(t_node));
-	if (!node)
+	if (!node && ft_free_split_special(2, split))
 		return (0);
 	node->id = (*params)->rooms_count;
 	node->name = ft_strdup(split[0]);
@@ -72,6 +72,6 @@ int			ft_add_room(t_params **params, t_list **list, char **str)
 	ft_lstadd(list, new);
 	ft_add_to_map_output(params, *str);
 	ft_set_rooms_count_started(params, str);
-	ft_free_split(2, split);
+	ft_free_split_special(2, split);
 	return (1);
 }

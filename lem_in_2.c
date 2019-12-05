@@ -6,7 +6,7 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:37:48 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/28 20:34:47 by rbeaufre         ###   ########.fr       */
+/*   Updated: 2019/12/03 14:01:58 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,6 @@ int			ft_lsharp(t_params **params, char **str, int i)
 	(*params)->non_fatal_error_type = ft_strdup("Start with L");
 	ft_strdel(str);
 	return (1);
-}
-
-static void	ft_add_to_map_output(t_params **params, char *str)
-{
-	char *str2;
-
-	str2 = (*params)->map;
-	(*params)->map = ft_strjoin(str2, str);
-	ft_strdel(&str2);
-	ft_add_return_line(params);
 }
 
 void		ft_tunnel_add_success(t_params **params, char **str)

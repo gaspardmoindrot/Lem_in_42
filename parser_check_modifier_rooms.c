@@ -39,17 +39,17 @@ int			ft_is_room_type(char **str)
 		split = ft_strsplit(*str, ' ');
 		i = -1;
 		while (split[0][++i])
-			if (!ft_isprint(split[0][i]))
+			if (!ft_isprint(split[0][i]) && ft_free_split_special(2, split))
 				return (0);
 		i = ft_is_plus_minus(split[1][0]) ? 0 : -1;
 		while (split[1][++i])
-			if (!(ft_isdigit(split[1][i])))
+			if (!(ft_isdigit(split[1][i])) && ft_free_split_special(2, split))
 				return (0);
 		i = ft_is_plus_minus(split[2][0]) ? 0 : -1;
 		while (split[2][++i])
-			if (!(ft_isdigit(split[2][i])))
+			if (!(ft_isdigit(split[2][i])) && ft_free_split_special(2, split))
 				return (0);
-		ft_free_split(2, split);
+		ft_free_split_special(2, split);
 	}
 	return (1);
 }

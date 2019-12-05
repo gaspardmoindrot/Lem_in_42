@@ -51,7 +51,7 @@ int		ft_strsplit_get_nb_words(char const *s, char c)
 	return (nbr);
 }
 
-void	ft_free_split(int nbr, char **res)
+int		ft_free_split_special(int nbr, char **res)
 {
 	while (nbr >= 0)
 	{
@@ -60,4 +60,5 @@ void	ft_free_split(int nbr, char **res)
 		nbr--;
 	}
 	free(res);
+	return (1);
 }

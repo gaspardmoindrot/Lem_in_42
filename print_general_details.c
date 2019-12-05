@@ -6,7 +6,7 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 18:21:41 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/28 15:35:26 by rbeaufre         ###   ########.fr       */
+/*   Updated: 2019/12/03 17:48:57 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_print_general_details(t_list **list, t_params **params)
 {
-	if (PRINT == 1)
+	if ((*params)->print == 1)
 	{
 		ft_printf("-----------------------\n");
 		ft_printf("Welcome to lem-in by gmoindro && rbeaufre\n");
@@ -23,7 +23,7 @@ void	ft_print_general_details(t_list **list, t_params **params)
 		ft_printf("[{YELLOW}%i{EOC}] rooms detected\n", (*params)->rooms_count);
 		ft_printf("-----------------------\n");
 	}
-	if (PRINT == 1 && PRINT_LIST == 1)
+	if ((*params)->print == 1 && (*params)->print_list == 1)
 	{
 		ft_printf("Here is the map [{GREEN}Start{EOC}] [{RED}End{EOC}]\n");
 		ft_printf("-----------------------\n");
@@ -33,7 +33,7 @@ void	ft_print_general_details(t_list **list, t_params **params)
 
 void	ft_print_parsing_error_fatal(t_params **params)
 {
-	if (PRINT == 1)
+	if ((*params)->print == 1)
 	{
 		ft_printf("-----------------------\n");
 		ft_printf("{RED}WARNING{EOC} - Error was found at line ");
@@ -47,7 +47,7 @@ void	ft_print_parsing_error_fatal(t_params **params)
 
 void	ft_print_parsing_error_non_fatal(t_params **params)
 {
-	if (PRINT == 1)
+	if ((*params)->print == 1)
 	{
 		ft_printf("-----------------------\n");
 		ft_printf("{YELLOW}WARNING{EOC} - Error was found at line ");

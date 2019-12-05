@@ -6,7 +6,7 @@
 /*   By: rbeaufre <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 17:00:43 by rbeaufre          #+#    #+#             */
-/*   Updated: 2019/11/28 20:40:30 by rbeaufre         ###   ########.fr       */
+/*   Updated: 2019/12/03 17:13:04 by rbeaufre         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ int			ft_parse_fatal_errors_check(t_params **params, t_list **list)
 	if (ft_check_start_connected_to_end_bfs(params, node) == -1)
 		return (-1);
 	ft_reset_passed_flags(list);
-	ft_free_fathers(list);
 	if (ft_check_start_connected_to_end_dfs(params, node, node) == -1)
 		return (-1);
 	ft_reset_passed_flags(list);
