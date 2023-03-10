@@ -71,6 +71,6 @@ Big steps :
 -------------
 ## Author
 
-Gaspard Moindrot (gmoindro)
+[Gaspard Moindrot (gmoindro)](https://profile.intra.42.fr/users/gmoindro)
 
-Raphael Beaufret (rbeaufre)
+[Raphael Beaufret (rbeaufre)](https://profile.intra.42.fr/users/rbeaufre)
